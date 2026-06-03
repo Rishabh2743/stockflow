@@ -7,7 +7,6 @@ import { PageHeader } from '../../../shared/components/PageHeader';
 import { Loader } from '../../../shared/components/Loader';
 import { QUERY_KEYS } from '../../../shared/constants/queryKeys';
 import { Settings as SettingsIcon } from 'lucide-react';
-import type { SettingsFormValues } from '../schemas/settingsSchema';
 
 const SettingsPage: React.FC = () => {
   const queryClient = useQueryClient();

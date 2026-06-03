@@ -1,8 +1,8 @@
 import React from 'react';
-import { Edit2, Trash2, PlusCircle, MinusCircle } from 'lucide-react';
+import { Edit2, Trash2, PlusCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { Product } from '../../../shared/types/product.types';
-import clsx from 'clsx';
+
 
 interface Props {
   products:         Product[];
