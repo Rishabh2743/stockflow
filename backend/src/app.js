@@ -13,7 +13,7 @@ const routes = require('./routes');
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 
 const app = express();
-
+app.set('trust proxy', 1);
 // ── Security headers ───────────────────────────────────────────────────────────
 app.use(helmet());
 
@@ -97,5 +97,6 @@ app.use(notFoundHandler);
 
 // ── Global error handler (MUST be last) ────────────────────────────────────────
 app.use(errorHandler);
+
 
 module.exports = app;

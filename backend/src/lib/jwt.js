@@ -40,7 +40,7 @@ const attachTokenCookie = (res, token) => {
   res.cookie('token', token, {
     httpOnly: true,
     secure: config.app.isProd,
-    sameSite: config.app.isProd ? 'strict' : 'lax',
+    sameSite: 'none',
     maxAge: config.jwt.cookieMaxAge,
   });
 };
@@ -52,7 +52,7 @@ const clearTokenCookie = (res) => {
   res.clearCookie('token', {
     httpOnly: true,
     secure: config.app.isProd,
-    sameSite: config.app.isProd ? 'strict' : 'lax',
+    sameSite: 'none',
   });
 };
 
