@@ -20,20 +20,42 @@ app.use(helmet());
 // ── CORS ──────────────────────────────────────────────────────────────────────
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (Postman, mobile apps, curl)
-      if (!origin) return callback(null, true);
+    origin(origin, callback) {
+      const allowedOrigins = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+      ];
 
-      if (config.cors.allowedOrigins.includes(origin)) {
+      if (!origin) {
         return callback(null, true);
       }
 
-      logger.warn('CORS blocked request', { origin });
-      callback(new Error(`Origin ${origin} not allowed by CORS policy.`));
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      console.log('Blocked Origin:', origin);
+
+      return callback(
+        new Error(`Origin ${origin} not allowed by CORS policy.`)
+      );
     },
+
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+
+    methods: [
+      'GET',
+      'POST',
+      'PUT',
+      'PATCH',
+      'DELETE',
+      'OPTIONS',
+    ],
+
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+    ],
   })
 );
 
