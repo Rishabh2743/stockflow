@@ -21,9 +21,12 @@ app.use(helmet());
 app.use(
   cors({
     origin(origin, callback) {
-      const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
-  : ['http://localhost:5173', 'http://127.0.0.1:5173'];
+      const allowedOrigins = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'https://stockflow-seven-ruddy.vercel.app'
+        
+      ];
 
       if (!origin) {
         return callback(null, true);
